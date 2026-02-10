@@ -16,11 +16,11 @@ models:
           - not_null
 
       - name: gender
-        description: "Patient gender (Male/Female/Unknown)"
+        description: "Patient gender code (1 or 2) - kept in original form"
         tests:
           - not_null
           - accepted_values:
-              values: ['Male', 'Female', 'Unknown']
+              values: [1, 2]
 
       - name: severity_level
         description: "Cancer severity level"
