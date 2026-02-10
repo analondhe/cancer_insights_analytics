@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_patient_lifestyle
+    description: Lifestyle factors that patients can influence. Higher scores (1-8)
+      correlate with higher severity.
+    columns:
+      - name: patient_id
+        tests:
+          - unique
+          - not_null
+
+  - name: int_patient_non_lifestyle
+    description: External/environmental factors outside patient's control. Higher
+      scores (1-8) correlate with higher severity.
+    columns:
+      - name: patient_id
+        tests:
+          - unique
+          - not_null
