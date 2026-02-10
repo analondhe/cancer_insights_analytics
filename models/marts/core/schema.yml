@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: dim_patients
+    description: "Patient dimension table with demographic information and age grouping"
+    columns:
+      - name: patient_id
+        description: "Unique identifier for each patient"
+        tests:
+          - unique
+          - not_null
+
+      - name: age_group
+        description: "Age group category (Young/Middle-aged/Senior/Elderly)"
+        tests:
+          - not_null
+
+      - name: age_range
+        description: "Detailed age range"
+        tests:
+          - not_null
+
+      - name: gender
+        description: "Patient gender"
+        tests:
+          - not_null
+
+      - name: severity_level
+        description: "Cancer severity level"
+        tests:
+          - not_null
+
+      - name: severity_numeric
+        description: "Numeric representation of severity (1=Low, 2=Medium, 3=High)"
+        tests:
+          - not_null
+
+  - name: fct_patient_risk_assessment
+    description: "Comprehensive fact table combining patient demographics, risk factors, and symptoms"
+    columns:
+      - name: patient_id
+        description: "Unique identifier for each patient"
+        tests:
+          - unique
+          - not_null
+
+      - name: risk_symptom_profile
+        description: "Combined risk and symptom profile"
+        tests:
+          - not_null
+
+      - name: overall_health_score
+        description: "Combined health score from risks and symptoms"
+        tests:
+          - not_null

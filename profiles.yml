@@ -1,0 +1,9 @@
+cancer_insights_analytics:
+  outputs:
+    dev:
+      type: duckdb
+      path: 'cancer_insights.duckdb'
+      schema: main
+      threads: 4
+
+  target: dev

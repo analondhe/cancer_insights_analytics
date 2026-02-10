@@ -1,0 +1,56 @@
+name: 'cancer_insights_analytics'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'cancer_insights_analytics'
+
+# These configurations specify where dbt should look for different types of files.
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model configurations
+models:
+  cancer_insights_analytics:
+    # Staging layer - where we clean and standardize raw data
+    staging:
+      +materialized: view
+      +schema: staging
+
+    # Intermediate layer - business logic transformations
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+
+    # Marts layer - final business-ready datasets
+    marts:
+      core:
+        +materialized: table
+        +schema: marts_core
+      analytics:
+        +materialized: table
+        +schema: marts_analytics
+
+seeds:
+  cancer_insights_analytics:
+    +schema: raw_data
+    +quote_columns: true
+
+vars:
+  # Define thresholds for risk categorization
+  low_risk_threshold: 3
+  medium_risk_threshold: 6
+
+  # Age group definitions
+  age_groups:
+    young: 35
+    middle: 55
+    senior: 70

@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: int_patient_risk_profile
+    description: "Patient risk profile with categorized risk factors and overall risk assessment"
+    columns:
+      - name: patient_id
+        description: "Unique identifier for each patient"
+        tests:
+          - unique
+          - not_null
+
+      - name: overall_risk_category
+        description: "Overall risk category based on average risk score (Low/Medium/High)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Medium', 'High']
+
+      - name: risk_concentration
+        description: "Concentration of high-risk factors (Low/Moderate/Elevated/Critical)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Moderate', 'Elevated', 'Critical']
+
+      - name: diet_quality
+        description: "Quality of patient's diet (Poor/Moderate/Good)"
+        tests:
+          - accepted_values:
+              values: ['Poor', 'Moderate', 'Good']
+
+  - name: int_patient_symptoms
+    description: "Patient symptom aggregation with severity categorization"
+    columns:
+      - name: patient_id
+        description: "Unique identifier for each patient"
+        tests:
+          - unique
+          - not_null
+
+      - name: symptom_severity_category
+        description: "Overall symptom severity category (Mild/Moderate/Severe)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Mild', 'Moderate', 'Severe']
+
+      - name: symptom_burden
+        description: "Burden of severe symptoms (Low/Moderate/High/Very High)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Moderate', 'High', 'Very High']
+
+      - name: critical_symptom_status
+        description: "Status of critical symptoms (Stable/Concerning/Critical)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Stable', 'Concerning', 'Critical']

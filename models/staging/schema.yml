@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_patients
+    description: "Staging layer for cancer patient data with cleaned column names and transformed gender values"
+    columns:
+      - name: patient_id
+        description: "Unique identifier for each patient"
+        tests:
+          - unique
+          - not_null
+
+      - name: age
+        description: "Patient age in years"
+        tests:
+          - not_null
+
+      - name: gender
+        description: "Patient gender (Male/Female/Unknown)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Male', 'Female', 'Unknown']
+
+      - name: severity_level
+        description: "Cancer severity level"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Low', 'Medium', 'High']
+
+      - name: air_pollution
+        description: "Air pollution exposure level (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: alcohol_use
+        description: "Alcohol consumption level (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: smoking
+        description: "Smoking intensity level (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: genetic_risk
+        description: "Genetic risk factor level (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: obesity
+        description: "Obesity level (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: chest_pain
+        description: "Chest pain severity (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: fatigue
+        description: "Fatigue severity (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: weight_loss
+        description: "Weight loss severity (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: shortness_breath
+        description: "Shortness of breath severity (1-8 scale)"
+        tests:
+          - not_null
+
+      - name: loaded_at
+        description: "Timestamp when the record was loaded"
+        tests:
+          - not_null
