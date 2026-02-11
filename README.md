@@ -7,7 +7,8 @@ A dbt project analyzing cancer patient data to identify severity patterns and ra
 The transformed dataset address:
 - Which demographics have higher cancer severity rates?
 - What factors correlate most with cancer severity?
-<img width="1982" height="392" alt="Screenshot 2026-02-10 at 8 29 53 PM" src="https://github.com/user-attachments/assets/25cece0e-ce0c-461d-9f47-cf37aa40a9be" />
+  <img width="1547" height="401" alt="Screenshot 2026-02-10 at 8 54 12 PM" src="https://github.com/user-attachments/assets/edcad811-4f7f-492d-b250-e1797e33470c" />
+  
 
 ## Data Source
 
