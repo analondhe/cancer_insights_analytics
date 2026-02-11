@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: severity_by_gender
+    description: "Cancer severity distribution by gender."
+    columns:
+      - name: gender
+        description: "Patient gender code (1 or 2)"
+      - name: total_patients
+        description: "Total number of patients for this gender"
+      - name: high_severity_count
+        description: "Number of patients with High severity"
+      - name: medium_severity_count
+        description: "Number of patients with Medium severity"
+      - name: low_severity_count
+        description: "Number of patients with Low severity"
+      - name: high_severity_pct
+        description: "Percentage of patients with High severity"
+      - name: medium_severity_pct
+        description: "Percentage of patients with Medium severity"
+      - name: low_severity_pct
+        description: "Percentage of patients with Low severity"
+
+  - name: severity_by_age_group
+    description: "Cancer severity distribution by age group."
+    columns:
+      - name: age_group
+        description: "Age group bucket (Under 20, 20-29, 30-39, 40-49, 50-59, 60+)"
+      - name: total_patients
+        description: "Total number of patients in this age group"
+      - name: high_severity_count
+        description: "Number of patients with High severity"
+      - name: medium_severity_count
+        description: "Number of patients with Medium severity"
+      - name: low_severity_count
+        description: "Number of patients with Low severity"
+      - name: high_severity_pct
+        description: "Percentage of patients with High severity"
+      - name: medium_severity_pct
+        description: "Percentage of patients with Medium severity"
+      - name: low_severity_pct
+        description: "Percentage of patients with Low severity"

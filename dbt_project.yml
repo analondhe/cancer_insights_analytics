@@ -32,12 +32,8 @@ models:
 
     # Marts layer - final business-ready datasets
     marts:
-      core:
-        +materialized: table
-        +schema: marts_core
-      analytics:
-        +materialized: table
-        +schema: marts_analytics
+      +materialized: table
+      +schema: marts
 
 seeds:
   cancer_insights_analytics:
