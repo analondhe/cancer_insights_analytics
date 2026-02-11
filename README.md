@@ -1,6 +1,12 @@
 # Cancer Insights Analytics - dbt Project
 
-A comprehensive dbt project for analyzing cancer patient data using DuckDB as the data warehouse.
+A comprehensive dbt project for analyzing cancer patient data using DuckDB as the data warehouse.# Cancer Insights Analytics
+
+A dbt project analyzing cancer patient data to identify severity patterns and rank risk factors.
+
+The transformed dataset address:
+- Which demographics have higher cancer severity rates?
+- What factors correlate most with cancer severity?
 <img width="1982" height="392" alt="Screenshot 2026-02-10 at 8 29 53 PM" src="https://github.com/user-attachments/assets/25cece0e-ce0c-461d-9f47-cf37aa40a9be" />
 
 ## Project Structure
@@ -45,45 +51,92 @@ cancer_insights_analytics/
    dbt test
    ```
 
-## Data Models
 
-### Staging Layer
-- **stg_patients**: Cleans raw patient data, standardizes column names, converts gender codes to text
 
-### Intermediate Layer
-- **int_patient_risk_profile**: Categorizes risk factors (smoking, alcohol, obesity, etc.) as Low/Medium/High
-- **int_patient_symptoms**: Aggregates symptom severity and identifies critical symptoms
+## Data Source
 
-### Marts Layer
+- **Source:** [Kaggle - Cancer Patients and Air Pollution](https://www.kaggle.com/datasets/thedevastator/cancer-patients-and-air-pollution-a-new-link)
+- **Records:** 1,000 patients
+- **Features:** Demographics, lifestyle factors, environmental factors, severity level
 
-#### Core Models
-- **dim_patients**: Patient dimension with age groups and demographics
-- **fct_patient_risk_assessment**: Comprehensive fact table with all patient metrics
+## Project Structure
+```
+├── seeds/
+│   └── cancer_patient_data_sets.csv
+├── models/
+│   ├── staging/
+│   │   └── stg_patients.sql
+│   ├── intermediate/
+│   │   ├── int_patient_lifestyle.sql
+│   │   └── int_patient_non_lifestyle.sql
+│   └── marts/
+│       ├── severity_by_gender.sql
+│       ├── severity_by_age_group.sql
+│       └── risk_factor_analysis.sql
+└── macros/
+    └── age_bucket.sql
+```
 
-#### Analytics Models
-- **severity_by_demographics**: Analyzes cancer severity by age and gender
-- **risk_factor_analysis**: Identifies which risk factors correlate with high severity
-- **symptom_correlation**: Analyzes which symptoms appear most in high severity cases
+## Data Flow
+```
+seed → staging → intermediate → marts
+                      │
+         ┌───────────┴───────────┐
+         │                       │
+   int_patient            int_patient
+   _lifestyle             _non_lifestyle
+         │                       │
+         └───────────┬───────────┘
+                     │
+    ┌────────────────┼────────────────┐
+    │                │                │
+severity_by    severity_by     risk_factor
+_gender        _age_group      _analysis
+```
 
-## Macros
+## Layer Descriptions
 
-- **age_bucket**: Converts age to age groups (Young/Middle-aged/Senior/Elderly)
-- **risk_level**: Converts 1-8 scale to Low/Medium/High categories
+| Layer | Purpose |
+|-------|---------|
+| **Staging** | Clean and rename columns |
+| **Intermediate** | Split into lifestyle vs non-lifestyle factors |
+| **Marts** | Business-ready aggregations and rankings |
 
-## Key Insights Available
+## Mart Models
 
-1. **Demographic Analysis**:
-   - Cancer severity distribution by age groups and gender
-   - High-risk age demographics
+| Model | Description |
+|-------|-------------|
+| `severity_by_gender` | Severity distribution by gender |
+| `severity_by_age_group` | Severity distribution by age group |
+| `risk_factor_analysis` | Ranks factors by correlation with severity |
 
-2. **Risk Factor Analysis**:
-   - Which risk factors have strongest correlation with high severity
-   - Common risk factor combinations in severe cases
+## Key Findings
 
-3. **Symptom Analysis**:
-   - Critical symptoms in high severity patients
-   - Symptom clustering patterns
+- Alcohol use has the strongest correlation with severity
+- Obesity ranks second
+- Gender 1 has 42% high severity vs Gender 2 at 28%
+- Severity increases with age
 
+## Setup
+```bash
+# Install dbt with DuckDB
+pip install dbt-duckdb
+
+# Run the project
+dbt seed
+dbt run
+dbt test
+
+# Generate docs
+dbt docs generate
+dbt docs serve
+```
+
+## Tech Stack
+
+- **Transformation:** dbt Core
+- **Warehouse:** DuckDB
+- **Language:** SQL + Jinja
 ## Configuration
 
 The project uses DuckDB with the following settings:
