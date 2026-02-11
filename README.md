@@ -1,6 +1,7 @@
 # Cancer Insights Analytics - dbt Project
 
 A comprehensive dbt project for analyzing cancer patient data using DuckDB as the data warehouse.
+<img width="1982" height="392" alt="Screenshot 2026-02-10 at 8 29 53 PM" src="https://github.com/user-attachments/assets/25cece0e-ce0c-461d-9f47-cf37aa40a9be" />
 
 ## Project Structure
 
