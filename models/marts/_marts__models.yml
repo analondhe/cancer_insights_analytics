@@ -40,3 +40,21 @@ models:
         description: "Percentage of patients with Medium severity"
       - name: low_severity_pct
         description: "Percentage of patients with Low severity"
+
+  - name: risk_factor_analysis
+    description: "Analyzes which factors correlate most with cancer severity by comparing average scores across severity levels."
+    columns:
+      - name: factor_name
+        description: "Name of the risk factor (e.g. smoking, obesity, air_pollution)"
+      - name: factor_type
+        description: "Whether the factor is lifestyle or non_lifestyle"
+      - name: avg_score_low_severity
+        description: "Average factor score for Low severity patients"
+      - name: avg_score_medium_severity
+        description: "Average factor score for Medium severity patients"
+      - name: avg_score_high_severity
+        description: "Average factor score for High severity patients"
+      - name: high_vs_low_difference
+        description: "Difference between High and Low severity averages - higher means stronger correlation"
+      - name: impact_rank
+        description: "Rank by impact (1 = strongest correlation with severity)"
