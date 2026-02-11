@@ -93,23 +93,5 @@ dbt docs serve
 - **Transformation:** dbt Core
 - **Warehouse:** DuckDB
 - **Language:** SQL + Jinja
-## Configuration
 
-The project uses DuckDB with the following settings:
-- Database: `cancer_insights.duckdb` (created automatically)
-- Schema separation for each layer (staging, intermediate, marts)
-- Tables materialized for marts, views for staging/intermediate
 
-## Running Queries
-
-After running the models, you can query the data:
-
-```sql
--- Example: Top risk factors for high severity
-SELECT * FROM marts_analytics.risk_factor_analysis
-ORDER BY correlation_strength DESC;
-
--- Example: Severity by age and gender
-SELECT * FROM marts_analytics.severity_by_demographics
-WHERE analysis_type = 'age_gender_distribution';
-```
